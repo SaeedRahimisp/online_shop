@@ -27,8 +27,8 @@ class Comment(models.Model):
         ('5', 'Perfect'),
     ]
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments')
-    body = models.TextField(max_length=200)
-    stars = models.CharField(max_length=10, choices=PRODUCT_STARS)
+    body = models.TextField(varbose_name='Comment Text', max_length=200)
+    stars = models.CharField(max_length=10, choices=PRODUCT_STARS, varbose_name='What is your score?')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
 
     datetime_created = models.DateTimeField(auto_now_add=True)
