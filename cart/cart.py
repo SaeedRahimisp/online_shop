@@ -1,3 +1,4 @@
+from products.models import Product
 
 class Cart:
     def __int__(self, request):
@@ -41,3 +42,40 @@ class Cart:
         Save the cart's changes
         """
         self.session.modified = True
+
+    def __iter__(self):
+        """"
+        Get the products objects from product model and show
+        """
+        product_id = self.cart.keys()
+        products = Product.objects.filter(id__in=product_id)
+
+        cart = self.cart.copy()
+
+        for product in products:
+            cart[str(product.id)]['product_obj'] = product
+
+        for item in cart.values():
+            yield item
+
+    def __len__(self):
+        """"
+        Length of the cart
+        """
+        return len(self.cart.keys())
+
+    def clear(self):
+        """"
+        Clear products in cart
+        """
+        del self.session['cart']
+        self.save()
+
+    def get_total_price(self):
+        """"
+        Show the total of price
+        """
+        product_id = self.cart.keys()
+        products = Product.objects.get(id__in=product_id)
+
+        return sum(products.price for product in products)
