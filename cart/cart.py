@@ -49,7 +49,7 @@ class Cart:
 
     def __iter__(self):
         """"
-        Get the products objects from product model and show
+        Get product objects from product model
         """
         product_id = self.cart.keys()
         products = Product.objects.filter(id__in=product_id)
@@ -60,26 +60,17 @@ class Cart:
             cart[str(product.id)]['product_obj'] = product
 
         for item in cart.values():
+            item['total_price'] = item['quantity']*item['product_obj'].price
             yield item
 
     def __len__(self):
-        """"
-        Length of the cart
-        """
         return len(self.cart.keys())
 
     def clear(self):
-        """"
-        Clear products in cart
-        """
         del self.session['cart']
         self.save()
 
     def get_total_price(self):
-        """"
-        Show the total of price
-        """
         product_id = self.cart.keys()
-        products = Product.objects.get(id__in=product_id)
 
-        return sum(products.price for product in products)
+        return sum(item['quantity']*item['product_obj'].price for item in self.cart.values())
