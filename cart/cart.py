@@ -29,7 +29,7 @@ class Cart:
 
         self.save()
 
-    def remove(self, product, quantity=1):
+    def remove(self, product):
         """"
         Remove the specified product from the cart
         """
