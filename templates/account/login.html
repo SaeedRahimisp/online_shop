@@ -1,8 +1,9 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
 {% block page_title %}
-    Login Page
+    {% trans 'Login' %}
 {% endblock %}
 {% block content %}
     <h1>Log In</h1>

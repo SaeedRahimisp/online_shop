@@ -140,7 +140,8 @@
                                             <div class="row">
                                                 <div class="border-top py-5 w-100"></div>
                                                 <div class="col-lg-8 m-auto">
-                                                    <span class="reply-title pull-right">{% trans 'Write your comment' %}</span>
+                                                    {% if user.is_authenticated %}
+                                                        <span class="reply-title pull-right">{% trans 'Write your comment' %}</span>
                                                     <br>
                                                     <form action="{% url 'comment_create' product.id %}" method="post"
                                                           class="form text-right">
@@ -151,6 +152,9 @@
                                                                    class="btn-submit">
                                                         </div>
                                                     </form>
+                                                    {% else %}
+                                                        <p>{% trans 'Please Login in order to write your comment.' %}</p>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>

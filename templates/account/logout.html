@@ -1,8 +1,9 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
 {% block page_title %}
-    Logout Page
+    {% trans 'Logout' %}
 {% endblock %}
 {% block content %}
     <h1>Log Out</h1>

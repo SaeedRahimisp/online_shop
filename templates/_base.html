@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!doctype html>
 <html class="no-js">
@@ -58,22 +59,22 @@
                                 <ul class="mainmenu d-lg-flex jusity-content-end jusity-content-lg-start pt-4">
                                     <li class="mainmenu__item menu-item-has-children active">
                                         <a href="{% url 'home' %}" class="mainmenu__link">
-                                            <span class="mm-text">خانه</span>
+                                            <span class="mm-text">{% trans 'Home' %}</span>
                                         </a>
                                     </li>
                                     <li class="mainmenu__item menu-item-has-children">
                                         <a href="" class="mainmenu__link">
-                                            <span class="mm-text">وبلاگ</span>
+                                            <span class="mm-text">{% trans 'Blog' %}</span>
                                         </a>
                                     </li>
                                     <li class="mainmenu__item menu-item-has-children">
                                         <a href="#" class="mainmenu__link">
-                                            <span class="mm-text">صفحات</span>
+                                            <span class="mm-text">{% trans 'Pages' %}</span>
                                         </a>
                                     </li>
                                     <li class="{% url 'aboutus' %}">
                                         <a href="contact-us.html" class="mainmenu__link">
-                                            <span class="mm-text">تماس با ما</span>
+                                            <span class="mm-text">{% trans 'About us' %}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -98,18 +99,24 @@
                                     <i class="flaticon flaticon-user"></i>
                                 </a>
                                 <ul class="user-info-menu">
-                                    <li>
-                                        <a class="text-right" href="my-account.html">حساب کاربری</a>
-                                    </li>
-                                    <li>
-                                        <a class="text-right" href="cart.html">سبد خرید</a>
-                                    </li>
-                                    <li>
-                                        <a class="text-right" href="wishlist.html">علاقه مندی ها</a>
-                                    </li>
-                                    <li>
-                                        <a class="text-right" href="order-tracking.html">تاریخچه سفارشات</a>
-                                    </li>
+                                    {% if user.is_authenticated %}
+                                        <li>
+                                            <a class="text-right" href="#">{% trans 'Profile' %}</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-right"
+                                               href="{% url 'account_logout' %}">{% trans 'Logout' %}</a>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a class="text-right"
+                                               href="{% url 'account_login' %}">{% trans 'Login' %}</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-right"
+                                               href="{% url 'account_signup' %}">{% trans 'Signup' %}</a>
+                                        </li>
+                                    {% endif %}
                                 </ul>
                             </li>
                             <li class="header-toolbar__item">
@@ -129,13 +136,13 @@
         </div>
     </header>
     <!-- Header End -->
-{% if messages %}
-    <div class="container">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    </div>
-{% endif %}
+    {% if messages %}
+        <div class="container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     {% block content %}
 
@@ -153,9 +160,9 @@
                         </div>
                         <div class="footer-widget mb--50 pb--1">
                             <ul class="footer-menu">
-                                <li><a href="">درباره ما</a></li>
-                                <li><a href="">قوانین و مقررات</a></li>
-                                <li><a href="">تماس با ما</a></li>
+                                <li><a href="">{% trans 'About us' %}</a></li>
+                                <li><a href="">{% trans 'Rules' %}</a></li>
+                                <li><a href="">{% trans 'Contact us' %}</a></li>
                             </ul>
                         </div>
                         <div class="footer-widget">
@@ -175,7 +182,7 @@
             <p>در باکس زیر عبارت خود را وارد کنید</p>
             <form class="searchform">
                 <input type="text" name="popup-search" id="popup-search" class="searchform__input"
-                       placeholder="جستجو در بین محصولات...">
+                       placeholder="{% trans 'Search between products...' %}">
                 <button type="submit" class="searchform__submit"><i class="flaticon flaticon-magnifying-glass-icon"></i>
                 </button>
             </form>
@@ -188,7 +195,7 @@
         <div class="mini-cart-wrapper">
             <a href="" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
             <div class="mini-cart-inner">
-                <h3 class="mini-cart__heading mb--40 mb-lg--30 text-right">سبد خرید</h3>
+                <h3 class="mini-cart__heading mb--40 mb-lg--30 text-right">{% trans 'Cart' %}</h3>
                 <div class="mini-cart__content">
                     <ul class="mini-cart__list text-right">
                         <li class="mini-cart__product d-flex justify-content-between">
@@ -205,7 +212,7 @@
                                         </a>
                                     </span>
                                 <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
+                                        <span>۴۹,۰۰۰ {% trans '$' %}</span> &#215; <span>۱</span>
                                     </span>
                             </div>
                         </li>
@@ -223,7 +230,7 @@
                                         </a>
                                     </span>
                                 <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
+                                        <span>۴۹,۰۰۰ {% trans '$' %}</span> &#215; <span>۱</span>
                                     </span>
                             </div>
                         </li>
@@ -241,18 +248,18 @@
                                         </a>
                                     </span>
                                 <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
+                                        <span>۴۹,۰۰۰ {% trans '$' %}</span> &#215; <span>۱</span>
                                     </span>
                             </div>
                         </li>
                     </ul>
                     <div class="mini-cart__total">
-                        <span>جمع کل</span>
-                        <span class="ammount">۱۴۸,۰۰۰ تومان</span>
+                        <span>{% trans 'Total price' %}</span>
+                        <span class="ammount">۱۴۸,۰۰۰ {% trans '$' %}</span>
                     </div>
                     <div class="mini-cart__buttons">
                         <a href="cart.html" class="btn btn-fullwidth btn-bg-sand mb--20">مشاهده سبد خرید</a>
-                        <a href="checkout.html" class="btn btn-fullwidth btn-bg-sand">پرداخت</a>
+                        <a href="checkout.html" class="btn btn-fullwidth btn-bg-sand">{% trans 'Payment' %}</a>
                     </div>
                 </div>
             </div>
@@ -265,13 +272,12 @@
     <!-- Global Overlay End -->
 
 </div>
-    <!-- ************************* JS Files ************************* -->
+<!-- ************************* JS Files ************************* -->
+<!-- jQuery JS -->
+<script src="{% static 'js/vendor.js' %}"></script>
 
-    <!-- jQuery JS -->
-    <script src="{% static 'js/vendor.js' %}"></script>
-
-    <!-- Main JS -->
-    <script src="{% static 'js/main.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
