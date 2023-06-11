@@ -2,6 +2,7 @@ from products.models import Product
 from django.contrib import messages
 from django.utils.translation import gettext as _
 
+
 class Cart:
     def __init__(self, request):
         """"
@@ -64,11 +65,11 @@ class Cart:
             cart[str(product.id)]['product_obj'] = product
 
         for item in cart.values():
-            item['total_price'] = item['quantity']*item['product_obj'].price
+            item['total_price'] = item['quantity'] * item['product_obj'].price
             yield item
 
     def __len__(self):
-        return len(self.cart.keys())
+        return sum(item['quantity'] for item in self.cart.values())
 
     def clear(self):
         del self.session['cart']
@@ -77,4 +78,4 @@ class Cart:
     def get_total_price(self):
         product_id = self.cart.keys()
 
-        return sum(item['quantity']*item['product_obj'].price for item in self.cart.values())
+        return sum(item['quantity'] * item['product_obj'].price for item in self.cart.values())
