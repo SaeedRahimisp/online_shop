@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
-                            <h1 class="page-title">سبد خرید</h1>
+                            <h1 class="page-title">{% trans 'Shpping cart' %}</h1>
                         </div>
                     </div>
                 </div>
@@ -33,12 +33,12 @@
                                             <table class="table text-center">
                                                 <thead>
                                                 <tr>
-                                                    <th>حذف محصول</th>
-                                                    <th>عکس محصول</th>
-                                                    <th>نام محصول</th>
-                                                    <th>قیمت</th>
-                                                    <th>مقدار</th>
-                                                    <th>مجموع</th>
+                                                    <th>{% trans 'Remove product' %}</th>
+                                                    <th>{% trans 'Product picture' %}</th>
+                                                    <th>{% trans 'Product title' %}</th>
+                                                    <th>{% trans 'Product Price' %}</th>
+                                                    <th>{% trans 'Quantity' %}</th>
+                                                    <th>{% trans 'Total price' %}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="row no-gutters border-top pt--20 mt--20">
                                     <div class="col-sm-6 text-sm-right">
-                                        <button type="submit" class="cart-form__btn">خالی کردن سبد خرید</button>
+                                        <button type="submit" class="cart-form__btn">{% trans 'Clear cart' %}</button>
                                     </div>
                                 </div>
                         </div>
@@ -106,11 +106,11 @@
 {#                                        </div>#}
                                         <div class="cart-calculator__item order-total">
                                             <div class="cart-calculator__item--head">
-                                                <span>جمع کل</span>
+                                                <span>{% trans 'Total price' %}</span>
                                             </div>
                                             <div class="cart-calculator__item--value">
                                                 <span class="product-price-wrapper">
-                                                    <span class="money">{{ cart.get_total_price }} تومان</span>
+                                                    <span class="money">{{ cart.get_total_price }} {% trans '$' %}</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                                 </div>
                                 <a href="checkout.html"
                                    class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">
-                                    ثبت سفارش
+                                    {% trans 'Confirm' %}
                                 </a>
                             </div>
                         </div>
@@ -128,103 +128,6 @@
         </div>
         <!-- Main Content Wrapper Start -->
 
-        <!-- Search form Popup Start -->
-        <div class="searchform__popup" id="searchForm">
-            <a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
-            <div class="searchform__body">
-                <p>Start typing and press Enter to search</p>
-                <form class="searchform">
-                    <input type="text" name="popup-search" id="popup-search" class="searchform__input"
-                           placeholder="Search Entire Store...">
-                    <button type="submit" class="searchform__submit"><i
-                            class="flaticon flaticon-magnifying-glass-icon"></i></button>
-                </form>
-            </div>
-        </div>
-        <!-- Search form Popup End -->
-
-        <!-- Mini Cart Start -->
-        <aside class="mini-cart" id="miniCart">
-            <div class="mini-cart-wrapper">
-                <a href="" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
-                <div class="mini-cart-inner">
-                    <h3 class="mini-cart__heading mb--40 mb-lg--30 text-right">سبد خرید</h3>
-                    <div class="mini-cart__content">
-                        <ul class="mini-cart__list text-right">
-                            <li class="mini-cart__product d-flex justify-content-between">
-                                <div class="mini-cart__product__image">
-                                    <a href="#">
-                                        <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
-                                    </a>
-                                </div>
-                                <div class="mini-cart__product__content pt-2">
-                                    <span class="mini-cart__product__title d-flex flex-row justify-content-between">
-                                        <a href="#"> محصول سماره یک </a>
-                                        <a href="#" class="">
-                                            &#10060;
-                                        </a>
-                                    </span>
-                                    <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
-                                    </span>
-                                </div>
-                            </li>
-                            <li class="mini-cart__product d-flex justify-content-between">
-                                <div class="mini-cart__product__image">
-                                    <a href="#">
-                                        <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
-                                    </a>
-                                </div>
-                                <div class="mini-cart__product__content pt-2">
-                                    <span class="mini-cart__product__title d-flex flex-row justify-content-between">
-                                        <a href="#"> محصول سماره یک </a>
-                                        <a href="#" class="">
-                                            &#10060;
-                                        </a>
-                                    </span>
-                                    <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
-                                    </span>
-                                </div>
-                            </li>
-                            <li class="mini-cart__product d-flex justify-content-between">
-                                <div class="mini-cart__product__image">
-                                    <a href="#">
-                                        <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
-                                    </a>
-                                </div>
-                                <div class="mini-cart__product__content pt-2">
-                                    <span class="mini-cart__product__title d-flex flex-row justify-content-between">
-                                        <a href="#"> محصول سماره یک </a>
-                                        <a href="#" class="">
-                                            &#10060;
-                                        </a>
-                                    </span>
-                                    <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
-                                    </span>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="mini-cart__total">
-                            <span>جمع کل</span>
-                            <span class="ammount">۱۴۸,۰۰۰ تومان</span>
-                        </div>
-                        <div class="mini-cart__buttons">
-                            <a href="cart.html" class="btn btn-fullwidth btn-bg-sand mb--20">مشاهده سبد خرید</a>
-                            <a href="checkout.html" class="btn btn-fullwidth btn-bg-sand">پرداخت</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        <!-- Mini Cart End -->
-
-        <!-- Global Overlay Start -->
-        <div class="ShoppingYar-global-overlay"></div>
-        <!-- Global Overlay End -->
-
-    </div>
     <!-- Main Wrapper End -->
 
 {% endblock %}

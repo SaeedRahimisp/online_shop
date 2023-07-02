@@ -173,3 +173,5 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 # crispy settings
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOCALE_PATHS = [BASE_DIR / "locale"]
